@@ -1,0 +1,18 @@
+[Unit]
+Description=Human detection on phone camera stream (records to /root/recordings)
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/human_detect
+Environment=HOME=/root
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /root/human_detect/detect.py
+Restart=always
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target
